@@ -14,4 +14,5 @@ def main():
             break      # No more input
         print(tok)
 
-
+if __name__ == "__main__":
+    main()

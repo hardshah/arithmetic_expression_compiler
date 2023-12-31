@@ -1,6 +1,7 @@
 import ply.lex as lex
 
 # Types of tokens in Rust
+# List of token names
 tokens = [
     'IDENTIFIER',
     'NUMBER',
@@ -10,19 +11,21 @@ tokens = [
     'DIVIDE',
     'LET',
     'EQUALS',
+    'LPAREN',
+    'RPAREN',
     'SEMICOLON',
 ]
 
-# Regular expression rules for simple tokens (Copied over from PLY docs example)
-t_PLUS    = r'\+'
-t_MINUS   = r'-'
-t_TIMES   = r'\*'
-t_DIVIDE  = r'/'
-t_LPAREN  = r'\('
-t_RPAREN  = r'\)'
-
-## want to ignore these chars
-t_ignore = ' \t'
+# Regular expression rules for simple tokens
+t_PLUS = r'\+'
+t_MINUS = r'-'
+t_TIMES = r'\*'
+t_DIVIDE = r'/'
+t_LET = r'let'
+t_EQUALS = r'='
+t_LPAREN = r'\('
+t_RPAREN = r'\)'
+t_SEMICOLON = r';'
 
 ## Rules
 def t_IDENTIFIER(t):
@@ -39,5 +42,8 @@ def t_NUMBER(t):
 def t_error(t):
     print("Syntax Error", t.value[0])
     t.lexer.skip(1)
+
+## want to ignore these chars
+t_ignore = ' \t\r\n'
 
 lexer = lex.lex()
