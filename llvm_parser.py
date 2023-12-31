@@ -1,4 +1,6 @@
 from llvmlite import ir, binding
+import ply.yacc as yacc
+from lexer import tokens
 
 MODULE_NAME = "test"
 
@@ -12,3 +14,7 @@ binding.initialize_all_asmprinters()
 
 module = ir.Module(name = MODULE_NAME)
 builder = ir.IRBuilder()
+
+##Building parser
+
+parser = yacc.yacc()

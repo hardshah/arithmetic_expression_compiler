@@ -1,2 +1,2 @@
 # Using LLVM Compiler
-Doing the Kaleidoscope Tutorial
+Building Rust inspired simple language frontend
