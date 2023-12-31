@@ -15,6 +15,19 @@ binding.initialize_all_asmprinters()
 module = ir.Module(name = MODULE_NAME)
 builder = ir.IRBuilder()
 
+## AST Node Classes
+# AST nodes
+class VariableDeclarationNode:
+    def __init__(self, identifier, value):
+        self.identifier = identifier
+        self.value = value
+
+class AssignmentNode:
+    def __init__(self, identifier, value):
+        self.identifier = identifier
+        self.value = value
+
+
 ##Building parser
 
 parser = yacc.yacc()
