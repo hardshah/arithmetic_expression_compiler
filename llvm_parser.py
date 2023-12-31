@@ -4,19 +4,18 @@ from lexer import tokens
 
 MODULE_NAME = "test"
 
-#LLVM
+# LLVM
 
 binding.initialize()
 binding.initialize_native_target()
 binding.initialize_all_asmprinters()
 
-##Creating Module
+## Creating Module
 
 module = ir.Module(name = MODULE_NAME)
 builder = ir.IRBuilder()
 
 ## AST Node Classes
-# AST nodes
 class VariableDeclarationNode:
     def __init__(self, identifier, value):
         self.identifier = identifier
@@ -28,6 +27,6 @@ class AssignmentNode:
         self.value = value
 
 
-##Building parser
+## Building parser
 
 parser = yacc.yacc()
