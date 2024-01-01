@@ -17,23 +17,24 @@ tokens = [
 ]
 
 # Regular expression rules for simple tokens
-t_PLUS = r'\+'
-t_MINUS = r'-'
-t_TIMES = r'\*'
-t_DIVIDE = r'/'
-t_LET = r'let'
-t_EQUALS = r'='
-t_LPAREN = r'\('
-t_RPAREN = r'\)'
-t_SEMICOLON = r';'
+#SYMBOLS FOR EACH TOKEN USED IN GRAMMAR RULES
+t_PLUS = r'\+' #a
+t_MINUS = r'-' #b
+t_TIMES = r'\*' #c
+t_DIVIDE = r'/' #d
+t_LET = r'let' #e
+t_EQUALS = r'=' #f
+t_LPAREN = r'\(' #g
+t_RPAREN = r'\)' #h
+t_SEMICOLON = r';' #i
 
 ## Rules
-def t_IDENTIFIER(t):
+def t_IDENTIFIER(t): #j
     r'[a-zA-Z_][a-zA-Z0-9_]*'
     t.type = 'IDENTIFIER'
     return t
 
-def t_NUMBER(t):
+def t_NUMBER(t): #
     r'\d+'
     t.value = int(t.value)
     return t

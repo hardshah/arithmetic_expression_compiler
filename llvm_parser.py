@@ -25,6 +25,12 @@ class AssignmentNode:
     def __init__(self, identifier, value):
         self.identifier = identifier
         self.value = value
+ 
+#Grammar rules using bottom up parsing. Look-Ahead Left-to-Right Rightmost derivation
+
+
+def p_program(p): ## Program is list of statements
+    p[0] = p[1] ## program -> statements
 
 
 ## Building parser
