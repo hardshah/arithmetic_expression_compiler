@@ -9,6 +9,12 @@ def tokenize(input):
     lexer.input(input)
     return iter(lexer.token, None)
 
+def parse(tokens):
+    parser = Parser(tokens=tokens)
+    return parser.p_program()
+
 def main():
-    lexer.input(INPUT_CODE)
-    tokens = lexer.tokenize()
+    tokens = tokenize(INPUT_CODE)
+    
+    print(tokens)
+main()

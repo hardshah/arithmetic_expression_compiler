@@ -24,7 +24,7 @@ class Parser:
     ##             | assignment
     ##             | expression
     def p_statement(self):
-        match self.current_token.type:
+        match self.current.type:
             case 'LET':
                 return self.p_variable_declaration()
             case 'IDENTIFIER':
@@ -36,7 +36,7 @@ class Parser:
     ##                | term "-" expression
     ##                | term
     def p_expression(self):
-        left_term = self.parse_term() #Keep parsed left term
+        left_term = self.p_term() #Keep parsed left term
         while self.current and self.current.type in ('PLUS', 'MINUS'):
             operation = self.current.type
             self.next_token() #Consume operator

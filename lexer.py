@@ -1,20 +1,24 @@
 import ply.lex as lex
 
+#Don't want let to match as an identifier
+reserved = {
+    'let': 'LET',
+}
+
 # Types of tokens
 # List of token names
 tokens = [
-    'IDENTIFIER',
-    'NUMBER',
     'PLUS',
     'MINUS',
     'MULTIPLY',
     'DIVIDE',
-    'LET',
     'EQUALS',
     'LPAREN',
     'RPAREN',
     'SEMICOLON',
-]
+    'IDENTIFIER',
+    'NUMBER',
+] + list(reserved.values())
 
 #SYMBOLS FOR EACH TOKEN USED IN GRAMMAR RULES
 t_PLUS = r'\+' #a
@@ -27,10 +31,12 @@ t_LPAREN = r'\(' #g
 t_RPAREN = r'\)' #h
 t_SEMICOLON = r';' #i
 
+
+
 ## Special rokens
 def t_IDENTIFIER(t): #j
     r'[a-zA-Z_][a-zA-Z0-9_]*'
-    t.type = 'IDENTIFIER'
+    t.type = reserved.get(t.value, 'IDENTIFIER')
     return t
 
 def t_NUMBER(t): #

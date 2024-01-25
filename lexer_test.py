@@ -5,6 +5,10 @@ x = 5;
 y = 10;
 z = x + y * 2;
 """
+INPUT_CODE = """
+let x = 5 * ((2+3)/3);
+id = x * 30 + 5
+"""
 def main():
     lexer.input(INPUT_CODE)
     # Tokenize
