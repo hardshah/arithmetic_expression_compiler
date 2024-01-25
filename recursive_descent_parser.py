@@ -79,18 +79,19 @@ class Parser:
 
     
     ## assignment ::= identifier "=" expression
-    def p_assignment():
+    def p_assignment(self):
+        id = self.current.value
+        self.next_token() #Consume identifier and '='
+        self.next_token()
+        expression = self.p_expression()
+        return ('assignment', id, expression)
 
     ## variable_declaration ::= "let" identifier "=" expression
-    def p_variable_declaration():
-
-    
-    
-
+    def p_variable_declaration(self):
     
 
     ## identifier ::= [a-zA-Z_][a-zA-Z0-9_]*
-    def p_identifier():
+    def p_identifier(self):
 
     ## number ::= \d+
     def p_number():
