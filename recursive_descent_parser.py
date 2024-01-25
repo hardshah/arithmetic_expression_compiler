@@ -1,5 +1,3 @@
-
-
 class Parser:
     def __init__(self, tokens): #Constructor
         self.tokens = tokens
@@ -38,16 +36,21 @@ class Parser:
     ##                | term "-" expression
     ##                | term
     def p_expression(self):
-        term = self.parse_term()
+        left_term = self.parse_term()
     
     ## term ::= factor "*" term
     ##        | factor "/" term
     ##        | factor
     def p_term(self):
-        factor = self.p_factor()
+        left_factor = self.p_factor() #Keep parsed left factor
+        while self.current and self.current.type in ('DIVIDE', 'MULTIPLY'):
+            operation = self.current.type
+            self.next_token()
+            right_factor = self.p_factor() # Parsed right factor
+            left_factor = ('operation', operation, left_factor, right_factor) #Apply operation to both
 
-
-    
+        return left_factor
+        
     ## factor ::= number
     ##          | identifier
     ##          | "(" expression ")"

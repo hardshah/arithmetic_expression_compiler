@@ -7,7 +7,7 @@ tokens = [
     'NUMBER',
     'PLUS',
     'MINUS',
-    'TIMES',
+    'MULTIPLY',
     'DIVIDE',
     'LET',
     'EQUALS',
@@ -16,11 +16,10 @@ tokens = [
     'SEMICOLON',
 ]
 
-# Regular expression rules for simple tokens
 #SYMBOLS FOR EACH TOKEN USED IN GRAMMAR RULES
 t_PLUS = r'\+' #a
 t_MINUS = r'-' #b
-t_TIMES = r'\*' #c
+t_MULTIPLY = r'\*' #c
 t_DIVIDE = r'/' #d
 t_LET = r'let' #e
 t_EQUALS = r'=' #f
@@ -28,7 +27,7 @@ t_LPAREN = r'\(' #g
 t_RPAREN = r'\)' #h
 t_SEMICOLON = r';' #i
 
-## Rules
+## Special rokens
 def t_IDENTIFIER(t): #j
     r'[a-zA-Z_][a-zA-Z0-9_]*'
     t.type = 'IDENTIFIER'
@@ -39,7 +38,7 @@ def t_NUMBER(t): #
     t.value = int(t.value)
     return t
 
-## Error handling
+## Error
 def t_error(t):
     print("Syntax Error", t.value[0])
     t.lexer.skip(1)
