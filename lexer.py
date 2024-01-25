@@ -1,6 +1,6 @@
 import ply.lex as lex
 
-# Types of tokens in Rust
+# Types of tokens
 # List of token names
 tokens = [
     'IDENTIFIER',
