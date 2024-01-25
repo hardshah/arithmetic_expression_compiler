@@ -36,7 +36,14 @@ class Parser:
     ##                | term "-" expression
     ##                | term
     def p_expression(self):
-        left_term = self.parse_term()
+        left_term = self.parse_term() #Keep parsed left term
+        while self.current and self.current.type in ('PLUS', 'MINUS'):
+            operation = self.current.type
+            self.next_token()
+            right_term = self.p_term()#Parsed right term
+            left_term = ('operation', operation, left_term, right_term)
+        
+        return left_term
     
     ## term ::= factor "*" term
     ##        | factor "/" term
