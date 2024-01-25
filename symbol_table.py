@@ -1,4 +1,5 @@
-
+class Symbol:
+    def __init__(self, name, typ)
 class SymbolTable:
     def __init__(self):
     
