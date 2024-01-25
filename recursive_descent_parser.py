@@ -88,10 +88,9 @@ class Parser:
 
     ## variable_declaration ::= "let" identifier "=" expression
     def p_variable_declaration(self):
-    
-
-    ## identifier ::= [a-zA-Z_][a-zA-Z0-9_]*
-    def p_identifier(self):
-
-    ## number ::= \d+
-    def p_number():
+        self.next_token() #Consume 'let' keyword
+        id = self.current.value
+        self.next_token() #Consume identifier and '='
+        self.next_token() 
+        expression = self.p_expression()
+        return ("var_declaration", id, expression)
