@@ -37,23 +37,47 @@ class Parser:
     ## <expression> ::= term "+" expression
     ##                | term "-" expression
     ##                | term
-    def p_expression():
-        
+    def p_expression(self):
+        term = self.parse_term()
+    
+    ## term ::= factor "*" term
+    ##        | factor "/" term
+    ##        | factor
+    def p_term(self):
+        factor = self.p_factor()
+
+
+    
+    ## factor ::= number
+    ##          | identifier
+    ##          | "(" expression ")"
+    def p_factor(self):
+        match self.current.type:
+            case 'NUMBER':
+                number = self.current.value
+                self.next_token()
+                return ('number', number)
+            case 'IDENTIFIER':
+                id = self.current.value
+                self.next_token()
+                return ('identifier', id)
+            case 'LPAREN':
+                self.next_token()
+                expression = self.parse_expression()
+                self.next_token()
+                return expression
+
+    
     ## assignment ::= identifier "=" expression
     def p_assignment():
 
     ## variable_declaration ::= "let" identifier "=" expression
     def p_variable_declaration():
 
-    ## term ::= factor "*" term
-    ##        | factor "/" term
-    ##        | factor
-    def p_term():
+    
+    
 
-    ## factor ::= number
-    ##          | identifier
-    ##          | "(" expression ")"
-    def p_factor():
+    
 
     ## identifier ::= [a-zA-Z_][a-zA-Z0-9_]*
     def p_identifier():
