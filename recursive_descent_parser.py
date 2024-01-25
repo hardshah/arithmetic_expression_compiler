@@ -39,7 +39,7 @@ class Parser:
         left_term = self.parse_term() #Keep parsed left term
         while self.current and self.current.type in ('PLUS', 'MINUS'):
             operation = self.current.type
-            self.next_token()
+            self.next_token() #Consume operator
             right_term = self.p_term()#Parsed right term
             left_term = ('operation', operation, left_term, right_term)
         
@@ -52,7 +52,7 @@ class Parser:
         left_factor = self.p_factor() #Keep parsed left factor
         while self.current and self.current.type in ('DIVIDE', 'MULTIPLY'):
             operation = self.current.type
-            self.next_token()
+            self.next_token() #Consume operator
             right_factor = self.p_factor() # Parsed right factor
             left_factor = ('operation', operation, left_factor, right_factor) #Apply operation to both
 
@@ -65,16 +65,16 @@ class Parser:
         match self.current.type:
             case 'NUMBER':
                 number = self.current.value
-                self.next_token()
+                self.next_token() #Consume number
                 return ('number', number)
             case 'IDENTIFIER':
                 id = self.current.value
-                self.next_token()
+                self.next_token() #Consume identifier
                 return ('identifier', id)
             case 'LPAREN':
-                self.next_token()
+                self.next_token() #Consume '('
                 expression = self.parse_expression()
-                self.next_token()
+                self.next_token() #Consume ')'
                 return expression
 
     
