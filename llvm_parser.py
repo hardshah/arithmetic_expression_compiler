@@ -28,45 +28,10 @@ class AssignmentNode:
  
 #Grammar rules using recursive descent parsing
 
-## program : statement_list
-def p_program(p):
-    p[0] = p[1] 
 
-##statement_list : statement SEMICOLON statement_list
-##               | statement SEMICOLON  
-def p_statement_list():
+##Parser class to manage state
+        
 
-## statement ::= variable_declaration
-##             | assignment
-##             | expression
-def p_statement():
-
-## <expression> ::= term "+" expression
-##                | term "-" expression
-##                | term
-def p_expression():
-    
-## assignment ::= identifier "=" expression
-def p_assignment():
-
-## variable_declaration ::= "let" identifier "=" expression
-def p_variable_declaration():
-
-## term ::= factor "*" term
-##        | factor "/" term
-##        | factor
-def p_term():
-
-## factor ::= number
-##          | identifier
-##          | "(" expression ")"
-def p_factor():
-
-## identifier ::= [a-zA-Z_][a-zA-Z0-9_]*
-def p_identifier():
-
-## number ::= \d+
-def p_number():
 
 ## Building parser
 parser = yacc.yacc()
