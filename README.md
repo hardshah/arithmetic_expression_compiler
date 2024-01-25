@@ -1,2 +1,2 @@
 # Using LLVM Compiler
-Building Rust inspired simple language frontend
+Building a basic compiler using LLVM
