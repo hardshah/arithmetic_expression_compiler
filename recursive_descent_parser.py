@@ -6,6 +6,7 @@ class Parser:
     
     def next_token(self): #set current token to the next token
         self.current= next(self.tokens, None)
+
     ## program ::= statement_list
     def p_program(self):
         return self.p_statement_list()
@@ -16,7 +17,7 @@ class Parser:
         statements = []
         while self.current is not None:
             statements.append(self.p_statement())
-            if self.current.type == 'SEMICOLON': 
+            if self.current and self.current.type == 'SEMICOLON': 
                 self.next_token() ##Consume the semicolon
         return statements
 
@@ -73,7 +74,7 @@ class Parser:
                 return ('identifier', id)
             case 'LPAREN':
                 self.next_token() #Consume '('
-                expression = self.parse_expression()
+                expression = self.p_expression()
                 self.next_token() #Consume ')'
                 return expression
 
