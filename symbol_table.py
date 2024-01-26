@@ -8,7 +8,7 @@ class SymbolTable:
     
     def lookup(self, name):
          if name in self.symbols: #Check if in current symbol table
-              return self.symbols
+              return self.symbols[name]
          if self.parent:
               return self.parent.lookup(name) #Check if in parent symbol table
          return None
