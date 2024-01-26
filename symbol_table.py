@@ -11,6 +11,7 @@ class SymbolTable:
               return self.symbols
          if self.parent:
               return self.parent.lookup(name) #Check if in parent symbol table
+         return None
     
     def within_scope(self): #Create a new symbol table and set this symbol table as parent
          scope = SymbolTable()
