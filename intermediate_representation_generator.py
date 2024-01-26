@@ -3,16 +3,14 @@ from visitor import Visitor
 
 class IRGenerator(Visitor): ##inherit from visitor class
     def __init__(self, table):
-        super().__init__(table)
         self.module = ir.Module()
         self.builder = None
         self.context = ir.Context()
         self.table = table
     
     def generate(self, ast):
-        function_type = ir.FunctionType(ir.VoidType, [])
+        function_type = ir.FunctionType(ir.VoidType(), [])
         main_function = ir.Function(self.module, function_type, name = 'main')
-        print(self.module)
         
         block = main_function.append_basic_block(name='entry')
         self.builder = ir.IRBuilder(block)
@@ -23,12 +21,28 @@ class IRGenerator(Visitor): ##inherit from visitor class
         self.builder.ret_void()
         return str(self.module)
     
+    def visit(self, node): # Override the visit function
+        match node[0]:
+            case 'var_declaration':
+                return self.visit_var_declaration(node)
+            case 'operation':
+                return self.visit_operation(node)
+            case 'assignment':
+                return self.visit_assignment(node)
+            case 'identifier':
+                return self.visit_identifier(node)
+            case 'number': ## By definition
+                return self.visit_number(node)
+            case _:
+                raise Exception('Node type does not exist')
+
+    
     def visit_var_declaration(self, node):
         type, name, expression = node
         value = self.visit(expression)
         alloc = self.builder.alloca(ir.IntType(32), name = name)
         self.builder.store(value, alloc)
-        self.table.add(alloc)
+        self.table.add(name, alloc)
 
     def visit_assignment(self, node):
         type, name, expression = node

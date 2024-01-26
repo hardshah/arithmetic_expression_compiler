@@ -24,8 +24,8 @@ def compile(tokens):
     
     symbol_table = SymbolTable()
     ir_generator = IRGenerator(symbol_table)
-    for node in ast:
-        ir_generator.generate(node)
+    
+    ir_generator.generate(ast)
     
     return ir_generator.module
 

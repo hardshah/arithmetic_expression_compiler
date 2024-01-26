@@ -5,7 +5,7 @@ from visitor import Visitor
 
 INPUT_CODE = """
 let x = 5 * ((2+3)/3);
-x = (t * 30) + 5;
+x = (x * 30) + 5;
 """
 def tokenize(input):
     lexer.input(input)
