@@ -1,14 +1,10 @@
-class Symbol:
-    def __init__(self, name, type = None):
-        self.name = name
-        self.type = type
 class SymbolTable:
     def __init__(self): #Constructor
         self.symbols = {}
         self.parent = None
 
-    def add(self, symbol): #Add symbol to current symbol table
-            self.symbols[symbol.name] = symbol
+    def add(self, name, type): #Add symbol to current symbol table
+            self.symbols[name] = type
     
     def lookup(self, name):
          if name in self.symbols: #Check if in current symbol table

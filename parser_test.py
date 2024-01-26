@@ -33,7 +33,7 @@ def visualize_ast(node, indent=0):
 def main():
     tokens = tokenize(INPUT_CODE)
     abstract_syntax_tree = parse(tokens)
-    
-    visualize_ast(abstract_syntax_tree)
 
+    visualize_ast(abstract_syntax_tree)
+    print(abstract_syntax_tree)
 main()
