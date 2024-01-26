@@ -2,16 +2,17 @@ from lexer import lexer
 from recursive_descent_parser import Parser
 from symbol_table import SymbolTable
 from visitor import Visitor
+from intermediate_representation_generator import IRGenerator
 
 INPUT_CODE = """
 let x = 5 * ((2+3)/3);
-x = (t * 30) + 5;
+x = (x * 30) + 5;
 """
 def tokenize(input):
     lexer.input(input)
     return iter(lexer.token, None)
 
-def parse(tokens):
+def compile(tokens):
 
     symbol_table = SymbolTable()
     parser = Parser(tokens, symbol_table)
@@ -21,7 +22,12 @@ def parse(tokens):
     for statement in ast:
         visitor.visit(statement)
     
-    return ast
+    symbol_table = SymbolTable()
+    ir_generator = IRGenerator(symbol_table)
+    for node in ast:
+        ir_generator.generate(node)
+    
+    return ir_generator.module
 
 def visualize_ast(node, indent=0):
     if node is None:
@@ -42,8 +48,8 @@ def visualize_ast(node, indent=0):
 
 def main():
     tokens = tokenize(INPUT_CODE)
-    ast = parse(tokens)
-    visualize_ast(ast)
+    ir = compile(tokens)
+    print(ir)
 
 
 main()
