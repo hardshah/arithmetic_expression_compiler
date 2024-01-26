@@ -1,15 +1,15 @@
 def visit(node, table):
-    match node[0]:
+    match node.type:
         case "var_declaration":
             return check_var_declaration(node, table)
         case "operation":
             return check_operation(node, table)
         case "assignment":
             return check_assignment(node, table)
-        case "number":
-            return check_number(node, table)
         case "identifier":
             return check_identifier(node, table)
+        case "number": #By definition
+            return 'int'
         case _:
             raise Exception('Node type does not exist')
 
@@ -30,9 +30,6 @@ def check_operation(node, table):
         return left_type
     else:
         raise TypeError('Type error in operation')
-    
-def check_number(node, table): # By definition
-    return 'int'
 
 def check_identifier(node, table):
     type, name = node 
@@ -44,10 +41,10 @@ def check_identifier(node, table):
 
 def check_assignment(node, table):
     type, name, expression = node
-    expression_type = visit(expression, table)
+    expression_type = visit(expression, table) #Find expression type
     var_type = table.lookup(name)
-    if var_type:
-        if var_type == expression_type:
+    if var_type: 
+        if var_type == expression_type: #Checking that variable type matches expression type
             return var_type
         else:
             raise TypeError('Cannot assign this expression type to this variable type')

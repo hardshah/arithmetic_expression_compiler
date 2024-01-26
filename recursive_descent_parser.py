@@ -1,9 +1,10 @@
 class Parser:
-    def __init__(self, tokens): #Constructor
+    def __init__(self, tokens, symbol_table): #Constructor
         self.tokens = tokens
+        self.symbol_table = symbol_table
         self.current =  None
         self.next_token()
-    
+       
     def next_token(self): #set current token to the next token
         self.current= next(self.tokens, None)
 
@@ -85,6 +86,10 @@ class Parser:
         self.next_token() #Consume identifier and '='
         self.next_token()
         expression = self.p_expression()
+
+        if not self.symbol_table.lookup(id): #Checks if variable exists
+            raise NameError('Variable has not been declared')
+        
         return ('assignment', id, expression)
 
     ## variable_declaration ::= "let" identifier "=" expression
@@ -94,4 +99,8 @@ class Parser:
         self.next_token() #Consume identifier and '='
         self.next_token() 
         expression = self.p_expression()
+
+        var_type = 'int' #For now will only have integer type for variables
+        self.symbol_table.add(id, var_type)
+
         return ("var_declaration", id, expression)
