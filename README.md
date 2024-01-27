@@ -13,14 +13,14 @@ To initialize and declare a variable you must use the let keyword
 # Assignment
 In order to assign a variable's value, it must be declared before the assignment
 
-'let x = 5;
- x = 4;' 
+let x = 5;
+x = 4;
 
  or
  
-'let x = 9;
- let y = 3
- x = x/y;' 
+let x = 9;
+let y = 3;
+x = x/y;
 
  are both valid re-assignments of the variable x's value
 
