@@ -1,7 +1,7 @@
-from lexer import lexer
-from recursive_descent_parser import Parser
-from symbol_table import SymbolTable
-from visitor import Visitor
+from compiler_components.lexer import lexer
+from compiler_components.recursive_descent_parser import Parser
+from compiler_components.symbol_table import SymbolTable
+from compiler_components.visitor import Visitor
 
 INPUT_CODE = """
 let x = 5 * ((2+3)/3);

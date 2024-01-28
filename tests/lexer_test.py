@@ -1,4 +1,4 @@
-from lexer import lexer
+from compiler_components.lexer import lexer
 
 INPUT_CODE = """
 x = 5;

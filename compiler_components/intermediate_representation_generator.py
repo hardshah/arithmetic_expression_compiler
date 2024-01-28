@@ -1,5 +1,5 @@
 from llvmlite import ir
-from visitor import Visitor
+from compiler_components.visitor import Visitor
 
 class IRGenerator(Visitor): ##inherit from visitor class
     def __init__(self, table):
