@@ -1,4 +1,4 @@
-# A basic arithmetic expression interpreter to intermediate representation
+# A basic arithmetic expression compiler to LLVM intermediate representation
 
 Building a basic interpreter for simple arithmetic expressions using LLVM to generate intermediate representation
 For more information check out the examples of usage for this simple language frontend.
