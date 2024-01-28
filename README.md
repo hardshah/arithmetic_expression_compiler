@@ -1,7 +1,9 @@
 # A basic arithmetic expression compiler to LLVM intermediate representation
 
-Building a basic interpreter for simple arithmetic expressions using LLVM to generate intermediate representation
+Building a compiler frontend and backend for simple arithmetic expressions using LLVM to generate intermediate representation.
 For more information check out the examples of usage for this simple language frontend.
+
+Includes a lexer, parser, semantic analysis and type checking, and an IR generator
 
 examples of usage:
 
