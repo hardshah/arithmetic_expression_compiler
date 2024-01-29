@@ -28,11 +28,11 @@ x = x/y;
 
 # Addition and Substraction
 
-'let x = 2 + 3;' or 'let x = 3-2;' are both valid ways to assign x a value via addition or substraction
+'let x = 2 + 3;' or 'let x = 3-2;' are both valid ways to declare a variable x with a value via addition or substraction
 
 # Multiplication and Division
 
-'let x = 2 * 3;' or 'let x = 4/2;' are both valid ways to assign x a value via multiplication or division
+'let x = 2 * 3;' or 'let x = 4/2;' are both valid ways to declare a variable x with a value via multiplication or division
 
 # Expressions with complex order of operations
 
